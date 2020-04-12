@@ -31,7 +31,13 @@ $(document).ready(function () {
             The name and the number fields are reset to empty values.
     */
     $('#submit').click(function () {
-        // your code here
+
+        var number = $('#number').val();
+        $.get('/number', {text: number}, function(data, status) {
+          if(status == 'success')
+            $('#container').append('<p>' + data + '</p>');
+        });
+
     });
 
     /*
@@ -42,7 +48,11 @@ $(document).ready(function () {
             class `.contact`.
     */
     $('#contacts').on('click', '.remove', function () {
-        // your code here
+        var contact = $('#contacts').val();
+        $.get('/contacts', {text: contacts}, function(data, status) {
+          if(status == 'success')
+            $('#div').remove(data);
+        });
     });
 
 })
